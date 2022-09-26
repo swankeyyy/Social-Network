@@ -7,12 +7,14 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 const Profile = (props) => {
+
+  
    
     
     return (
         <div>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts postArray = {props.state.postArray}/>
         </div>
     )
 }
