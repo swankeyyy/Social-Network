@@ -1,6 +1,20 @@
+import rerenderEntireTree from './../render'
 
 
 let state = {
+    friendslist: {
+        friends: [
+            {name: 'Veronika',
+        id: 1},
+            {name: 'Nikita',
+        id: 2},
+            {name: 'Artemka',
+        id: 3},
+            {name: 'Nastya',
+        id: 4}
+            
+        ]
+    },
     messagesPage: {
         messageArray: [
             {
@@ -45,10 +59,19 @@ let state = {
                 message: 'davaika ya popadasdarobyu',
                 counter: '33'
             },
-        ]
+        ],
+        newPostText: 'new app'
     }
 }
 
-
-
+export let addPost = (postMessage) => {
+  
+    let newPost ={
+        message: postMessage,
+        counter: 0,
+    
+    }
+    state.profilePage.postArray.push(newPost);
+    rerenderEntireTree(state)
+    };
 export default state;
