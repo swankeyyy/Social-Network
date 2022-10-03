@@ -1,4 +1,5 @@
 import React from 'react';
+
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
@@ -10,13 +11,13 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-
-        let text = newPostElement.current.value;
-        props.addPost(text)
+        props.addPost();
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
+        props.updateNewPostText(text)
+        console.log(text)
     }
 
 

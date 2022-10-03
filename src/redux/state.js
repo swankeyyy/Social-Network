@@ -4,15 +4,23 @@ import rerenderEntireTree from './../render'
 let state = {
     friendslist: {
         friends: [
-            {name: 'Veronika',
-        id: 1},
-            {name: 'Nikita',
-        id: 2},
-            {name: 'Artemka',
-        id: 3},
-            {name: 'Nastya',
-        id: 4}
-            
+            {
+                name: 'Veronika',
+                id: 1
+            },
+            {
+                name: 'Nikita',
+                id: 2
+            },
+            {
+                name: 'Artemka',
+                id: 3
+            },
+            {
+                name: 'Nastya',
+                id: 4
+            }
+
         ]
     },
     messagesPage: {
@@ -64,14 +72,21 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) => {
-  
-    let newPost ={
-        message: postMessage,
-        counter: 0,
-    
+export let addPost = () => {
+
+    let newPost = {
+        message: state.profilePage.newPostText,
+        counter: 0,      
     }
     state.profilePage.postArray.push(newPost);
+    state.profilePage.newPostText = ' ';
     rerenderEntireTree(state)
-    };
+};
+
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state)
+};
+
 export default state;

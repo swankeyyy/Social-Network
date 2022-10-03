@@ -4,18 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { addPost } from './redux/state';
-
-
-let rerenderEntireTree = (state) => {
+import { updateNewPostText } from './redux/state';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App state={state} addPost={addPost} />
-  </React.StrictMode>
-);
 
-reportWebVitals();
+let rerenderEntireTree = (state) => {
+  root.render(
+    <React.StrictMode>
+      <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
+    </React.StrictMode>
+  );
+
+  reportWebVitals();
 
 }
 
