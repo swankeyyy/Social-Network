@@ -23,14 +23,15 @@ const App = (props) => {
         <Navbar />
         <div class='app-wrapper-content'>
           <Routes>
-            <Route path = "/friends/*" element = {<Friends 
-            state = {props.state.friendslist}/>} />
+            <Route path="/friends/*" element={<Friends
+              state={props.state.friendslist} />} />
             <Route path="/dialogs/*" element={<Dialogs
-              state={props.state.messagesPage} />} />
+              state={props.state.messagesPage}
+              sendMessage={props.sendMessage}
+              messageText={props.messageText} />} />
             <Route path="/profile" element={<Profile
-              state={props.state.profilePage} 
-              addPost={props.addPost} 
-              updateNewPostText={props.updateNewPostText} />} />
+              state={props.state.profilePage}
+              dispatch={props.dispatch} />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />

@@ -1,8 +1,31 @@
 import './index.css';
-import state from './redux/state';
-import rerenderEntireTree from './render.js'
+import store from './redux/state';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 
 
-rerenderEntireTree(state);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+let rerenderEntireTree = () => {
+    root.render(
+        <React.StrictMode>
+            <App state={store.getState()} dispatch={store.dispatch.bind(store)} sendMessage={store.sendMessage.bind(store)} messageText={store.messageText.bind(store)} />
+        </React.StrictMode>
+    );
+
+    reportWebVitals();
+
+}
+
+export default rerenderEntireTree;
+
+store.subscribe(rerenderEntireTree);
+
+
+rerenderEntireTree(store.getState);
 
