@@ -1,4 +1,7 @@
-
+let ADD_POST = 'ADD-POST';
+let UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+let MESSAGE_TEXT = 'MESSAGE-TEXT';
+let SEND_MESSAGE = 'SEND-MESSAGE';
 let store = {
     _state: {
         friendslist: {
@@ -83,26 +86,10 @@ let store = {
         this._callsubscriber = observer;
     },
 
-   
-    sendMessage() {
-        let newMessage = {
-            id: 0,
-            text: this._state.messagesPage.newMessageText,
-            name: 0,
-        }
-        this._state.messagesPage.messageArray.push(newMessage);
-        this._state.messagesPage.newMessageText = ' ';
-        this._callsubscriber(this._state);
-    },
-    messageText(newText) {
-        this._state.messagesPage.newMessageText = newText;
-        this._callsubscriber(this._state);
-    },
-
     dispatch(action) {
-     
-        if (action.type === 'ADD-POST') {
-           
+
+        if (action.type === ADD_POST) {
+
             let newPost = {
                 message: this._state.profilePage.newPostText,
                 counter: 0,
@@ -111,15 +98,50 @@ let store = {
             this._state.profilePage.newPostText = ' ';
             this._callsubscriber(this._state)
 
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callsubscriber(this._state)
+        } else if (action.type === MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.newText;
+            this._callsubscriber(this._state);
+        } else if (action.type === SEND_MESSAGE) {
+            let newMessage = {
+                id: 0,
+                text: this._state.messagesPage.newMessageText,
+                name: 0,
+            }
+            this._state.messagesPage.messageArray.push(newMessage);
+            this._state.messagesPage.newMessageText = ' ';
+            this._callsubscriber(this._state);
         }
-
     },
+};
 
-
+export let addPostActionCreator = () => {
+    return {
+        type: ADD_POST,
+    }
 }
+
+export let updateNewPostActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+
+export let onMessageChangeActionCreator = (text) => {
+    return {
+        type: MESSAGE_TEXT,
+        newText: text
+    }
+};
+
+export let sendMessageActionCreator = () => {
+    return {
+        type: SEND_MESSAGE,
+    }
+};
 
 export default store;
 window.store = store;

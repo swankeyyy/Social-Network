@@ -27,8 +27,7 @@ const App = (props) => {
               state={props.state.friendslist} />} />
             <Route path="/dialogs/*" element={<Dialogs
               state={props.state.messagesPage}
-              sendMessage={props.sendMessage}
-              messageText={props.messageText} />} />
+              dispatch={props.dispatch} />} />
             <Route path="/profile" element={<Profile
               state={props.state.profilePage}
               dispatch={props.dispatch} />} />
